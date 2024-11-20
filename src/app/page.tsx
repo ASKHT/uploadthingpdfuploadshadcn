@@ -40,7 +40,7 @@ export default function Home() {
 
   return (
     <main className="container mx-auto p-4 space-y-4">
-      <div className="space-y-2">
+      {/* <div className="space-y-2">
         <Input type="file" onChange={handleFileChange} className="w-full" />
         <Button
           onClick={handleManualUpload}
@@ -49,12 +49,13 @@ export default function Home() {
         >
           Manual Upload
         </Button>
-      </div>
+      </div> */}
 
       <UploadButton
         endpoint="videoAndImage"
         onClientUploadComplete={(res) => {
-          console.log(`onClientUploadComplete`, res);
+          const pdfUrl = res[0].url;
+          console.log("Uploaded PDF URL:", pdfUrl);
           alert("Upload Completed");
         }}
         onUploadBegin={() => {
@@ -63,7 +64,7 @@ export default function Home() {
         config={{ appendOnPaste: true, mode: "manual" }}
       />
 
-      <UploadDropzone
+      {/* <UploadDropzone
         endpoint="videoAndImage"
         onUploadAborted={() => {
           alert("Upload Aborted");
@@ -75,7 +76,7 @@ export default function Home() {
         onUploadBegin={() => {
           console.log("upload begin");
         }}
-      />
+      /> */}
     </main>
   );
 }

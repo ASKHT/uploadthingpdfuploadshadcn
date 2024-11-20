@@ -19,12 +19,6 @@ export const uploadRouter = {
     },
   })
     .middleware(({ files }) => {
-      // Check some condition based on the incoming requrest
-      // if (!req.headers.get("x-some-header")) {
-      //   throw new Error("x-some-header is required");
-      // }
-
-      // (Optional) Label your files with a custom identifier
       const filesWithMyIds = files.map((file, idx) => ({
         ...file,
         customId: `${idx}-${randomUUID()}`,
@@ -34,7 +28,8 @@ export const uploadRouter = {
       return { foo: "bar" as const, [UTFiles]: filesWithMyIds };
     })
     .onUploadComplete(({ file }) => {
-      console.log("upload completed", file);
+      const pdfUrl = file.url;
+      console.log("PDF URL:", pdfUrl);
     }),
 } satisfies FileRouter;
 
